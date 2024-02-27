@@ -1,0 +1,24 @@
+{
+  "name": "actions-qa-labels",
+  "version": "1.0.0",
+  "description": "A GitHub action to automatically add labels to pull requests based on QA report comments. ",
+  "main": "src/index.mjs",
+  "scripts": {
+    "build": "ncc build .\\src\\index.mjs --license license.txt -o dist"
+  },
+  "keywords": [
+    "github",
+    "actions",
+    "pull request",
+    "labels"
+  ],
+  "author": "auroraisluna",
+  "license": "GPLv3",
+  "dependencies": {
+    "@actions/core": "^1.10.0",
+    "@actions/github": "^5.1.1",
+    "@octokit/rest": "^19.0.13",
+    "ncc": "^0.3.6",
+    "octokit": "^2.1.0"
+  }
+}
