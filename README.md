@@ -31,67 +31,25 @@ jobs:
 ```
 
 **Configuration Details**
+| Value                         | Description                                                                                                                                                                                                                                                                      | Default                                        | Required | Type      |
+|-------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------|----------|-----------|
+| `repo-owner`                  | The owner of the repository. Leave the default value for automatic parsing (Recommended)                                                                                                                                                                                         | `"${{ github.event.repository.owner.login }}"` | **Yes**  | `string`  |
+| `repo-name`                   | The name of the repository. Leave the default value for automatic parsing (Recommended)                                                                                                                                                                                          | `"${{ github.event.repository.name }}"`        | **Yes**  | `string`  |
+| `pr-number`                   | The number of the pull request. Leave the default value for automatic parsing (Recommended)                                                                                                                                                                                      | `"${{ github.event.issue.number }}"`           | **Yes**  | `string`  |
+| `github-token`                | The GitHub token to use for adding labels to the pull request. Leave the default for a 'GitHub Actions' account (Recommended)  If you want to use a personal access token instead for your own account to perform these actions or when using a bot account, you can set it here | `"${{ secrets.GITHUB_TOKEN }}"`                | **Yes**  | `string`  |
+| `label-pass`                  | The label name to add if an acceptable PR comment triggers the "QA Passed" condition                                                                                                                                                                                             | `"QA Passed"`                                  | No       | `string`  |
+| `label-fail`                  | The label name to add if an acceptable PR comment triggers the "QA Failed" condition                                                                                                                                                                                             | `"QA Failed"`                                  | No       | `string`  |
+| `label-rtt`                   | The label name to add if an acceptable PR comment triggers the "Ready To Test" condition                                                                                                                                                                                         | `"QA Ready to Test"`                           | No       | `string`  |
+| `fail-action-if-no-qacomment` | Whether to fail the action if there is no QA report comment Uuseful if you want to make sure that the QA report comment is added for every pull request                                                                                                                          | `false`                                        | No       | `boolean` |
+| `fail-action-if-qa-failed`    | Whether to fail the action if an acceptable PR comment triggers the "QA Failed" condition Useful if you want to make sure that the QA report comment is added for every pull request                                                                                             | `false`                                        | No       | `boolean` |
 
-- `repo-owner` 
-The owner of the repository. This will automatically be set to the owner of the repository, so you don't need to change this. 
-Default: `${{ github.event.repository.owner.login }}`
-Required: **Yes**
-Accepts: `string`
+## Usage in a repository (Trigger Conditions)
 
-- `repo-name`
-The name of the repository. This will automatically be set to the name of the repository, so you don't need to change this.
-Default: `${{ github.event.repository.name }}`
-Required: **Yes**
-Accepts: `string`
+This action will automatically add labels (as well as fail if configured so) to pull requests based on comments posted on the PR.
 
-- `pr-number`
-The number of the pull request. This will automatically be set to the number of the pull request, so you don't need to change this.
-Default: `${{ github.event.issue.number }}`
-Required: **Yes**
-Accepts: `string`
+The wording & trigger conditions are based on the [FlyByWire QA Report Template](https://docs.flybywiresim.com/dev-corner/qa-process/#reporting-on-tests).
 
-- `github-token`
-The GitHub token to use for adding labels to the pull request. This will automatically be set to the GITHUB_TOKEN secret, so you don't need to change this. 
-If you want to use a personal access token instead for your own account or using a bot account, you can set it here.
-Default: `${{ secrets.GITHUB_TOKEN }}`
-Required: **Yes**
-Accepts: `string`
-
-- `label-pass`
-The label to add if the QA report comment contains the string "QA Passed".
-Recommended: `QA Passed`
-Required: **No**
-Accepts: `string`
-
-- `label-fail`
-The label to add if the QA report comment contains the string "QA Failed".
-Recommended: `QA Failed`
-Required: **No**
-Accepts: `string`
-
-- `label-rtt`
-The label to add if the QA report comment contains the string "QA Ready to Test".
-Recommended: `QA Ready to Test`
-Required: **No**
-Accepts: `string`
-
-- `fail-action-if-no-qacomment`
-Whether to fail the action if there is no QA report comment - useful if you want to make sure that the QA report comment is added for every pull request.
-Default: `false`
-Required: **No**
-Accepts: `boolean`
-
-- `fail-action-if-qa-failed`
-Whether to fail the action if the QA report comment contains the string "QA Failed" - useful if you want to make sure that the QA report comment is added for every pull request.
-Default: `false`
-Required: **No**
-Accepts: `boolean`
-
-## Usage in a repository
-
-This action will automatically add labels to pull requests based on QA report comments.
-
-The wording requirements are based on the https://docs.flybywiresim.com/dev-corner/qa-process/#reporting-on-tests template. If the action is not working, ensure you are following the template.
+In addition, comments such as "Ready To Test" (and similar) will add the "RTT" labeled as set in the action settings. 
 
 ## Building
 
