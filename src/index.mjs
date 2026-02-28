@@ -131,7 +131,7 @@ try {
     const failNoComment = core.getInput('fail-action-if-no-qacomment');
     const failNoPass = core.getInput('fail-action-if-qa-failed');
 
-    console.log(`Starting actions-qa-labels V1.0.0 - https://github.com/flybywiresim/actions-qa-labels`);
+    console.log(`Starting actions-qa-labels V1.0.1 - https://github.com/flybywiresim/actions-qa-labels`);
 
     //Create an Octokit instance and authenticate 
     const octokit = new Octokit({
