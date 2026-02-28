@@ -214,12 +214,16 @@ try {
                 //If we have the label-pass input then we want to remove it
                 if (labelPass) {
 
-                    await octokit.issues.removeLabel({
-                        owner: repoOwner,
-                        repo: repoName,
-                        issue_number: prNumber,
-                        name: [labelPass]
-                    });
+                    try {
+                        await octokit.issues.removeLabel({
+                            owner: repoOwner,
+                            repo: repoName,
+                            issue_number: prNumber,
+                            name: [labelPass]
+                        });
+                    } catch (error) {
+                        if (error.status !== 404) throw error;
+                    }
 
                     console.log(`Pass label removed from PR#${prNumber}`);
 
@@ -261,12 +265,16 @@ try {
                 //If we have the label-fail input then we want to remove it
                 if (labelFail) {
 
-                    await octokit.issues.removeLabel({
-                        owner: repoOwner,
-                        repo: repoName,
-                        issue_number: prNumber,
-                        name: [labelFail]
-                    });
+                    try {
+                        await octokit.issues.removeLabel({
+                            owner: repoOwner,
+                            repo: repoName,
+                            issue_number: prNumber,
+                            name: [labelFail]
+                        });
+                    } catch (error) {
+                        if (error.status !== 404) throw error;
+                    }
 
                     console.log(`Fail label removed from PR#${prNumber}`);
 
@@ -280,12 +288,16 @@ try {
             //Remove the RTT label if enabled
             if (labelRTT) {
 
-                await octokit.issues.removeLabel({
-                    owner: repoOwner,
-                    repo: repoName,
-                    issue_number: prNumber,
-                    name: [labelRTT]
-                });
+                try {
+                    await octokit.issues.removeLabel({
+                        owner: repoOwner,
+                        repo: repoName,
+                        issue_number: prNumber,
+                        name: [labelRTT]
+                    });
+                } catch (error) {
+                    if (error.status !== 404) throw error;
+                }
 
                 console.log(`RTT label removed from PR#${prNumber}`);
 
