@@ -33333,6 +33333,7 @@ module.exports.parseURL = function (input, options) {
 };
 
 
+
 /***/ }),
 
 /***/ 9857:
@@ -35386,7 +35387,7 @@ try {
     const failNoComment = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('fail-action-if-no-qacomment');
     const failNoPass = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('fail-action-if-qa-failed');
 
-    console.log(`Starting actions-qa-labels V1.0.0 - https://github.com/flybywiresim/actions-qa-labels`);
+    console.log(`Starting actions-qa-labels V1.0.1 - https://github.com/flybywiresim/actions-qa-labels`);
 
     //Create an Octokit instance and authenticate 
     const octokit = new _octokit_rest__WEBPACK_IMPORTED_MODULE_1__.Octokit({
