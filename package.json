@@ -1,6 +1,6 @@
 {
   "name": "actions-qa-labels",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A GitHub action to automatically add labels to pull requests based on QA report comments. ",
   "main": "src/index.mjs",
   "scripts": {
